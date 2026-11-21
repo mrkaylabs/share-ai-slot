@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Share AI Slot — Family slots & AI subscriptions</title>
+<meta name="description" content="Need a Google family slot or an AI subscription? Have a spare one to sell? Submit here — from $1/month.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: dark light;
+    --bg: #0d0c0a;
+    --card: #151311;
+    --card-elevated: #1a1715;
+    --border: #29241f;
+    --border-hover: #423930;
+    --text: #f5f0eb;
+    --muted: #96897b;
+    --gold: #f59e0b;
+    --flame: #ea580c;
+    --ok: #22c55e;
+    --accent-glow: rgba(234, 88, 12, 0.18);
+    --gold-glow: rgba(245, 158, 11, 0.15);
+    --input-bg: #100f0d;
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #faf7f2;
+      --card: #ffffff;
+      --card-elevated: #fcfbfa;
+      --border: #e8e0d5;
+      --border-hover: #cbbfb0;
+      --text: #1d1916;
+      --muted: #847566;
+      --input-bg: #f5f0e8;
+      --accent-glow: rgba(234, 88, 12, 0.08);
+      --gold-glow: rgba(245, 158, 11, 0.08);
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    padding: 36px 20px 60px;
+    background-image:
+      radial-gradient(ellipse 60% 40% at 50% -10%, rgba(234, 88, 12, 0.12), transparent 70%),
+      radial-gradient(circle at 10% 20%, rgba(245, 158, 11, 0.04), transparent 40%);
+  }
+  .container { max-width: 640px; margin: 0 auto; }
+
+  .hero { text-align: center; padding: 10px 0 28px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 5px 14px; background: var(--card); border: 1px solid var(--border);
+    border-radius: 999px; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold);
+    box-shadow: 0 2px 10px var(--gold-glow); margin-bottom: 14px;
+  }
+  .hero-badge .status-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--ok); box-shadow: 0 0 8px var(--ok);
+    animation: pulse 2.2s infinite ease-in-out;
+  }
+  @keyframes pulse { 0%,100% { opacity:1; transform:scale(1);} 50% { opacity:.4; transform:scale(.85);} }
+  .logo-mk {
+    font-family: 'Cinzel Decorative', 'Cinzel', serif;
+    font-size: 38px; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase;
+    background: linear-gradient(180deg, #FFF7ED 0%, #FDE68A 25%, #F59E0B 55%, #D9480F 82%, #7C1D05 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 4px 18px rgba(217, 72, 15, 0.35));
+    line-height: 1.15; margin-bottom: 10px; position: relative; display: inline-block;
+  }
+  .logo-mk::after {
+    content: ''; position: absolute; bottom: -6px; left: 20%; right: 20%; height: 1.5px;
+    background: linear-gradient(90deg, transparent, var(--flame), var(--gold), transparent);
+  }
+  .hero-subtitle { font-size: 14.5px; font-weight: 500; color: var(--muted); letter-spacing: 0.02em; margin-top: 14px; }
+  .hero-subtitle strong { color: var(--text); font-weight: 600; }
+  .hero-subtitle .glow-text {
+    background: linear-gradient(135deg, #F59E0B, #EA580C);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;
+  }
+  @media (max-width: 720px) { .logo-mk { font-size: 29px; letter-spacing: 0.1em; } }
+
+  .sent {
+    display: none; background: var(--card); border: 1px solid var(--ok);
+    border-radius: var(--radius); padding: 16px; text-align: center;
+    margin-bottom: 16px; font-size: 14.5px; box-shadow: 0 4px 20px rgba(34,197,94,0.12);
+  }
+
+  .connectors-strip {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 10px; margin-bottom: 16px;
+  }
+  .connector-card {
+    display: flex; align-items: center; gap: 12px;
+    padding: 13px 15px; border-radius: var(--radius-sm);
+    background: var(--card-elevated); border: 1px solid var(--border);
+    color: var(--text); cursor: pointer; transition: all 0.15s ease; text-align: left; font-family: inherit;
+  }
+  .connector-card:hover { border-color: var(--border-hover); box-shadow: 0 6px 24px var(--accent-glow); transform: translateY(-1px); }
+  .connector-card.active { border-color: var(--gold); box-shadow: 0 0 0 2px var(--gold-glow); }
+  .connector-card svg { color: var(--gold); flex-shrink: 0; }
+  .c-name { display: block; font-size: 13.5px; font-weight: 700; }
+  .c-step { display: block; font-size: 11.5px; color: var(--muted); margin-top: 1px; }
+
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 22px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15); transition: all 0.2s ease;
+  }
+  .card:hover { border-color: var(--border-hover); box-shadow: 0 6px 24px var(--accent-glow); }
+  .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .card-title {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--muted);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .card-title svg { color: var(--gold); width: 14px; height: 14px; }
+
+  label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin: 16px 0 7px; }
+  label:first-of-type { margin-top: 0; }
+  select, input, textarea {
+    width: 100%; padding: 11px 14px;
+    background: var(--input-bg); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px;
+    outline: none; transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  select:focus, input:focus, textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 2px var(--gold-glow); }
+  textarea { min-height: 92px; resize: vertical; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+    padding: 10px 18px; font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 12.5px; font-weight: 600; border-radius: var(--radius-sm);
+    cursor: pointer; border: 1px solid var(--border);
+    background: var(--card-elevated); color: var(--text); transition: all 0.15s ease;
+  }
+  .btn-primary {
+    width: 100%; margin-top: 20px; padding: 13px 18px; font-size: 14px;
+    background: linear-gradient(135deg, #f59e0b, #d9480f);
+    border-color: #d9480f; color: #fff;
+    box-shadow: 0 2px 10px rgba(217, 72, 15, 0.3);
+  }
+  .btn-primary:hover { background: linear-gradient(135deg, #fbbf24, #ea580c); box-shadow: 0 4px 14px rgba(217, 72, 15, 0.45); transform: translateY(-1px); }
+  .note { color: var(--muted); font-size: 12px; text-align: center; margin-top: 14px; }
+  .mono { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); text-align: center; margin-top: 18px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <div class="hero-badge"><span class="status-dot"></span>Slots available · from $1/month · varies by country</div>
+    <div><span class="logo-mk">Share AI Slot</span></div>
+    <p class="hero-subtitle">Buy a cheap slot, or sell your spare one.<br>I handle the deal in the middle — <span class="glow-text">safe for both sides</span>.<br>Mua slot giá rẻ, hoặc bán slot thừa — mình đứng giữa, <strong>an toàn cho cả hai bên</strong>.</p>
+  </div>
+
+  <div class="sent" id="sentBox">✅ Sent! I'll get back to you by email soon. / Đã gửi! Mình sẽ liên hệ lại qua email sớm.</div>
+
+  <div class="connectors-strip">
+    <button type="button" class="connector-card" data-type="need-family" onclick="pick('need-family', this)">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span><span class="c-name">Need a family slot?</span><span class="c-step">Let me know — from $1/month, varies by country</span></span>
+    </button>
+    <button type="button" class="connector-card" data-type="have-family" onclick="pick('have-family', this)">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M15.5 9.5c-.8-1-2-1.5-3.5-1.5-2 0-3.5 1-3.5 2.5s1.5 2.5 3.5 2.5 3.5 1 3.5 2.5-1.5 2.5-3.5 2.5c-1.5 0-2.7-.5-3.5-1.5"/></svg>
+      <span><span class="c-name">Got a spare family slot?</span><span class="c-step">Sell it — I find you a buyer</span></span>
+    </button>
+    <button type="button" class="connector-card" data-type="need-ai" onclick="pick('need-ai', this)">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3v-7a3 3 0 0 1 3-3h1V6a4 4 0 0 1 4-4z"/><path d="M9 13h.01M15 13h.01"/></svg>
+      <span><span class="c-name">Need ChatGPT / Claude Code?</span><span class="c-step">Other AI subscriptions — submit here</span></span>
+    </button>
+    <button type="button" class="connector-card" data-type="have-ai" onclick="pick('have-ai', this)">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4z"/></svg>
+      <span><span class="c-name">Got a spare AI subscription?</span><span class="c-step">Unused account/seat — I buy it or resell it</span></span>
+    </button>
+  </div>
+
+  <form class="card" action="https://formsubmit.co/phongakay1@gmail.com" method="POST">
+    <div class="card-header">
+      <div class="card-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+        Submit — get a reply by email
+      </div>
+    </div>
+    <input type="hidden" name="_subject" value="[Share AI Slot] New submission">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_next" value="https://mrkaylabs.github.io/share-ai-slot/?sent=1">
+
+    <label for="type">What do you need? / Bạn cần gì?</label>
+    <select id="type" name="type" required onchange="syncCards()">
+      <option value="need-family">I need a family slot (from $1/month, varies by country)</option>
+      <option value="have-family">I have a spare family slot to sell</option>
+      <option value="need-ai">I need another AI subscription (ChatGPT, Claude Code...)</option>
+      <option value="have-ai">I have a spare AI subscription to sell</option>
+    </select>
+
+    <label for="name">Your name / Tên của bạn</label>
+    <input id="name" name="name" type="text" placeholder="e.g. Nguyen Van A" required>
+
+    <label for="email">Your email (I'll reply here) / Email của bạn</label>
+    <input id="email" name="email" type="email" placeholder="you@example.com" required>
+
+    <label for="message">Details / Chi tiết (which service, how many months...)</label>
+    <textarea id="message" name="message" placeholder="e.g. Google 5TB family, 3 months / ChatGPT Plus, 1 seat..."></textarea>
+
+    <button type="submit" class="btn btn-primary">Submit → get a reply by email</button>
+    <p class="note">Prices vary by country. Submit and we'll email you the result soon. / Giá tùy theo quốc gia. Gửi xong mình sẽ báo kết quả qua email sớm.</p>
+  </form>
+
+  <p class="mono">share-ai-slot · handled by admin, replies within a day</p>
+</div>
+<script>
+  function pick(v, el){
+    document.getElementById('type').value = v;
+    syncCards();
+    document.getElementById('name').focus();
+  }
+  function syncCards(){
+    var v = document.getElementById('type').value;
+    document.querySelectorAll('.connector-card').forEach(function(c){
+      c.classList.toggle('active', c.getAttribute('data-type') === v);
+    });
+  }
+  syncCards();
+  if (new URLSearchParams(location.search).get('sent') === '1') document.getElementById('sentBox').style.display = 'block';
+</script>
+</body>
+</html>
